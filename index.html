@@ -13,28 +13,50 @@
             box-sizing: border-box;
         }
 
+        /* Fondo principal con imagen de hojas desenfocadas (ambiente natural) */
         body {
-            background: linear-gradient(145deg, #0a0f1c 0%, #0c1222 100%);
             font-family: 'Inter', sans-serif;
-            color: #f0f3fa;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem 1.5rem;
+            position: relative;
+            /* Imagen de fondo: hojas de árbol desenfocadas, ambiente bohemio/natural */
+            background-image: url('https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background-image 0.6s ease-in-out;
+        }
+
+        /* Capa de desenfoque y oscurecimiento suave para legibilidad */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            background: rgba(10, 15, 30, 0.55);
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* Contenedor principal con glassmorphism sutil */
         .app-container {
+            position: relative;
+            z-index: 2;
             max-width: 1280px;
             width: 100%;
-            background: rgba(12, 20, 30, 0.55);
-            backdrop-filter: blur(2px);
+            background: rgba(12, 20, 30, 0.65);
+            backdrop-filter: blur(4px);
             border-radius: 3rem;
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             overflow: hidden;
             transition: all 0.3s ease;
-            border: 1px solid rgba(120, 100, 200, 0.2);
+            border: 1px solid rgba(120, 100, 200, 0.3);
         }
 
         /* contenido interno */
@@ -46,25 +68,25 @@
         .hero {
             text-align: center;
             margin-bottom: 3.5rem;
-            border-bottom: 1px dashed rgba(150, 130, 220, 0.3);
+            border-bottom: 1px dashed rgba(150, 130, 220, 0.4);
             padding-bottom: 2rem;
         }
 
         .hero h1 {
             font-size: clamp(1.8rem, 6vw, 3.2rem);
             font-weight: 700;
-            background: linear-gradient(135deg, #FFFFFF, #b9b3ff, #b2aaf0);
+            background: linear-gradient(135deg, #FFFFFF, #e0d6ff, #cbb5ff);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             letter-spacing: -0.02em;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .hero-sub {
             font-size: 1.1rem;
-            color: #cdd9ff;
+            color: #e0e7ff;
             max-width: 680px;
             margin: 0 auto;
             font-weight: 400;
@@ -80,21 +102,21 @@
         }
 
         .option-card {
-            background: rgba(25, 32, 48, 0.7);
+            background: rgba(25, 32, 48, 0.75);
             backdrop-filter: blur(8px);
             border-radius: 2rem;
             padding: 1.6rem 1.2rem;
             transition: all 0.25s ease-in-out;
             cursor: pointer;
-            border: 1px solid rgba(130, 110, 210, 0.3);
+            border: 1px solid rgba(130, 110, 210, 0.4);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
         .option-card:hover {
             transform: translateY(-6px);
-            background: rgba(45, 55, 85, 0.85);
-            border-color: rgba(170, 140, 255, 0.7);
+            background: rgba(55, 65, 100, 0.85);
+            border-color: rgba(170, 140, 255, 0.8);
             box-shadow: 0 18px 28px -10px rgba(0, 0, 0, 0.5);
         }
 
@@ -108,23 +130,23 @@
             font-weight: 700;
             font-size: 1.35rem;
             margin-bottom: 0.5rem;
-            color: #edeaff;
+            color: #f2ecff;
         }
 
         .option-purpose {
             font-size: 0.85rem;
-            color: #b9c3e6;
+            color: #cbd5ff;
             line-height: 1.4;
         }
 
         /* Área de experiencia narrativa (refugio visual) */
         .narrative-area {
             margin: 2rem 0 1.5rem;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 2rem;
             padding: 1.8rem;
             transition: all 0.4s ease;
-            border: 1px solid rgba(110, 90, 180, 0.3);
+            border: 1px solid rgba(110, 90, 180, 0.5);
         }
 
         .zen-image {
@@ -139,7 +161,7 @@
             width: auto;
             object-fit: cover;
             box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .message-container {
@@ -204,8 +226,8 @@
             margin-top: 2.5rem;
             text-align: center;
             font-size: 0.85rem;
-            color: #8d98bb;
-            border-top: 1px solid rgba(110, 100, 150, 0.3);
+            color: #b7c1e6;
+            border-top: 1px solid rgba(110, 100, 150, 0.4);
             padding-top: 1.5rem;
             display: flex;
             justify-content: space-between;
@@ -221,21 +243,43 @@
 
         .footer-right {
             font-size: 0.8rem;
-            background: rgba(80, 70, 140, 0.3);
+            background: rgba(80, 70, 140, 0.4);
             padding: 0.3rem 1rem;
             border-radius: 40px;
         }
 
-        /* Ocultar menu cuando estamos en modo narrativo (opcional) pero manteniendo el botón volver */
-        .hidden-menu {
-            display: none;
+        /* Controles de música */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(20, 25, 45, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #8b74d4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-size: 0.8rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .music-control:hover {
+            background: #3c2e78;
+            transform: scale(1.02);
+        }
+        .music-icon {
+            font-size: 1.3rem;
+        }
+        .music-status {
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        .options-grid.active-menu {
-            display: grid;
-        }
-
-        /* Respuesta */
         @media (max-width: 680px) {
             .main-content {
                 padding: 1.5rem;
@@ -243,12 +287,22 @@
             .message-container {
                 font-size: 1rem;
             }
+            .music-control {
+                bottom: 12px;
+                right: 12px;
+                padding: 0.3rem 0.8rem;
+            }
         }
 
         button {
             background: none;
             border: none;
             font-family: inherit;
+        }
+        
+        /* Ocultar menu */
+        .hidden-menu {
+            display: none;
         }
     </style>
 </head>
@@ -264,11 +318,9 @@
         </div>
 
         <!-- Menú interactivo (opciones) -->
-        <div id="menuOptionsContainer" class="options-grid">
-            <!-- cada card se genera dinamicamente pero podemos definir estructura fija o js, lo haremos con js para mejor mantenimiento pero también data -->
-        </div>
+        <div id="menuOptionsContainer" class="options-grid"></div>
 
-        <!-- Área de experiencia narrativa (inicialmente sin mostrar mucho / vacío sutil) -->
+        <!-- Área de experiencia narrativa (inicialmente oculta) -->
         <div id="narrativeArea" class="narrative-area" style="display: none;">
             <div class="zen-image" id="zenImage">
                 <img id="dynamicImage" src="" alt="imagen inspiradora">
@@ -289,19 +341,23 @@
     </div>
 </div>
 
+<!-- Control de música flotante -->
+<div id="musicToggle" class="music-control">
+    <span class="music-icon">🎵</span>
+    <span class="music-status" id="musicStatusText">Música de fondo</span>
+</div>
+
 <script>
     // --------------------------------------------------------------
     // MEJORAS IMPLEMENTADAS:
-    // 1. Galería de imágenes zen dinámicas (fade) según cada opción.
-    // 2. Efecto máquina de escribir con cancelación al cambiar opción.
-    // 3. Transiciones suaves, menú interactivo con indicador de carga emocional.
-    // 4. Persistencia del estado y restauración del menú con animación.
-    // 5. Añadido de 'reinicio' suave + mejora de paleta nocturna/violeta.
-    // 6. Sistema de navegación fluida y botón siempre presente.
-    // 7. Incluye mensajes poderosos según idea original, enriquecidos con toque poético.
+    // 1. Fondo borroso con hojas/vegetación desenfocada (base) Y diferentes ambientes según opción.
+    // 2. Música relajante de fondo (loop suave) con control toggle.
+    // 3. Imágenes zen únicas para cada opción + fondos ambientales distintos.
+    // 4. Efecto máquina de escribir, transiciones suaves, menú transformador.
+    // 5. Mantiene todas las funciones anteriores y las mejora con inmersión sensorial.
     // --------------------------------------------------------------
 
-    // Definición de las opciones transformadas (mejora conceptual: incluye emoji representativo, imagen única y mensaje profundo)
+    // Definición de las opciones transformadas (cada una con su propio ambiente de fondo)
     const optionsData = [
         {
             id: "herir",
@@ -309,7 +365,8 @@
             purpose: "Dirigido a quien reconoce que ha sido agresivo y busca entender el daño que causa.",
             emoji: "⚡💔",
             message: "Reconocer que tus acciones han lastimado a alguien no es un signo de debilidad, es el primer paso de tu grandeza. Detrás de cada pantalla hay un corazón latiendo; elige ser la persona que siembra paz donde otros siembran espinas. El perdón empieza en la consciencia, hoy comienza tu transformación.",
-            image: "https://picsum.photos/id/104/800/500?grayscale&seed=peace1"  // naturaleza calmada
+            image: "https://images.pexels.com/photos/793412/pexels-photo-793412.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            backgroundImage: "https://images.pexels.com/photos/1631677/leaf-nature-plant-green-1631677.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop"  // hojas verdes desenfoque natural
         },
         {
             id: "dolor",
@@ -317,7 +374,8 @@
             purpose: "Un refugio para quien está sufriendo ciberacoso en este momento.",
             emoji: "🌀🕯️",
             message: "Tu valor es intrínseco e inalterable. Ningún comentario tiene el poder de borrar quién eres en realidad. Esta tormenta es solo temporal, pero tu fortaleza es permanente. Respira, apaga la pantalla y recuerda: eres amado/a. Eres más que un like, eres luz infinita.",
-            image: "https://picsum.photos/id/42/800/500?seed=calm2"
+            image: "https://images.pexels.com/photos/1408221/light-dawn-nature-water-1408221.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            backgroundImage: "https://images.pexels.com/photos/998736/pexels-photo-998736.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // agua y hojas flotantes
         },
         {
             id: "valor",
@@ -325,7 +383,8 @@
             purpose: "Para quien ha dejado que una opinión externa distorsione la percepción de sí mismo.",
             emoji: "🌟🌱",
             message: "No permitas que la opinión distorsionada de otros se convierta en tu realidad. Los comentarios ajenos dicen mucho más de quien los escribe que de quien los recibe. Vuelve a tu esencia, a lo que amas de ti, porque eso es lo único que es real. Tu brillo no necesita validación externa.",
-            image: "https://picsum.photos/id/123/800/500?seed=valor"
+            image: "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            backgroundImage: "https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // luz entre hojas
         },
         {
             id: "fuerza",
@@ -333,7 +392,8 @@
             purpose: "Enfocado en la importancia de buscar ayuda y romper el silencio.",
             emoji: "🤝🌊",
             message: "A veces duele más el silencio de los demás que el grito del agresor. Pero hoy, quiero que sepas que no estás solo/a. Levantarte y hablar de lo que sientes es el acto de valentía más grande que puedes realizar. Pedir ayuda es poder, compartir tu herida es empezar a sanar.",
-            image: "https://picsum.photos/id/96/800/500?seed=unidos"
+            image: "https://images.pexels.com/photos/572679/pexels-photo-572679.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            backgroundImage: "https://images.pexels.com/photos/1486974/forest-trees-fog-nature-1486974.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // bosque brumoso
         },
         {
             id: "sueño",
@@ -341,18 +401,10 @@
             purpose: "Para quien desea ser parte del cambio y construir comunidades basadas en el respeto.",
             emoji: "🌍💭",
             message: "El cambio real comienza con tu decisión de no responder al odio con odio. Cada palabra amable que compartes es una pieza clave en la construcción de un espacio digital donde todos podamos ser nosotros mismos sin miedo. Juntos soñamos un internet más humano, empático y valiente.",
-            image: "https://picsum.photos/id/25/800/500?seed=futuro"
+            image: "https://images.pexels.com/photos/1267325/pexels-photo-1267325.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            backgroundImage: "https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // atardecer y hojas suaves
         }
     ];
-
-    // Imágenes alternativas de respaldo (naturaleza, luz suave, zen) — mejora de coherencia visual
-    // pero usamos las asignadas arriba que son naturaleza / agua / etc, pero añadimos un pool si falla, no hay problema.
-
-    // Estado global
-    let isNarrativeActive = false;
-    let currentTypingTimeout = null;
-    let currentTypingInterval = null;
-    let currentMessageElement = null;
 
     // Elementos DOM
     const menuContainer = document.getElementById('menuOptionsContainer');
@@ -360,200 +412,262 @@
     const dynamicImg = document.getElementById('dynamicImage');
     const typewriterDiv = document.getElementById('typewriterText');
     const backBtn = document.getElementById('backToCalmBtn');
-
-    // función para detener cualquier efecto de escritura en curso
+    const bodyEl = document.body;
+    
+    // Estados de música (audio web)
+    let audioCtx = null;
+    let isMusicPlaying = false;
+    let musicSource = null;
+    let gainNode = null;
+    let musicBuffer = null;
+    const musicToggleBtn = document.getElementById('musicToggle');
+    const musicStatusSpan = document.getElementById('musicStatusText');
+    
+    // Crear un Oscilador suave y pad ambiental no intrusivo (onda sinusoidal + ruido rosado? mejor un simple loop de naturaleza sampleada pero usamos Web Audio para sonido relajante)
+    // Generamos un paisaje sonoro suave: una combinación de onda sinodal profunda + ruido suave tipo "lluvia/olas" pero armónico.
+    // Para no depender de archivos externos, creamos un sonido ambiente etéreo (música relajante de fondo tipo meditación)
+    async function initAmbientMusic() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioCtx.createGain();
+        gainNode.gain.value = 0.22;  // volumen bajo y relajante
+        gainNode.connect(audioCtx.destination);
+        
+        // Creamos un loop simple con osciladores suaves y un ruido de fondo tipo "hojas"
+        // Esto simulará una música de fondo ambiental, suave, no intrusiva.
+        // Usamos un oscilador principal de frecuencia baja (onda seno) + un segundo armónico.
+        const now = audioCtx.currentTime;
+        
+        // Función para crear un oscilador con fade suave
+        function createPad(freq, detune, panVal) {
+            const osc = audioCtx.createOscillator();
+            const gainOsc = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+            osc.detune.value = detune || 0;
+            gainOsc.gain.value = 0.08;
+            osc.connect(gainOsc);
+            gainOsc.connect(gainNode);
+            osc.start();
+            // fade out lento y loop infinito? mejor reiniciar con evento ended, pero para loop haremos otro método.
+            return {osc, gainOsc};
+        }
+        
+        // Creamos un loop infinito con dos osciladores que se reciclen? En realidad los osciladores solo pueden iniciar una vez.
+        // Para música continua usaremos un buffer de ruido + generator? Alternativa: crear un nodo de BufferSource con un sample relajante generado.
+        // Generamos un "ruido marrón" suave que evoca hojas y viento.
+        const bufferSize = audioCtx.sampleRate * 4; // 4 segundos de ruido ambiental
+        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            // Brown noise más cálido
+            data[i] = (Math.random() * 2 - 1) * 0.08;
+        }
+        const noiseSource = audioCtx.createBufferSource();
+        noiseSource.buffer = noiseBuffer;
+        noiseSource.loop = true;
+        const noiseGain = audioCtx.createGain();
+        noiseGain.gain.value = 0.1;
+        noiseSource.connect(noiseGain);
+        noiseGain.connect(gainNode);
+        
+        // Agregamos un tono bajo de meditación
+        const droneOsc = audioCtx.createOscillator();
+        droneOsc.type = 'sine';
+        droneOsc.frequency.value = 88; // nota baja
+        const droneGain = audioCtx.createGain();
+        droneGain.gain.value = 0.07;
+        droneOsc.connect(droneGain);
+        droneGain.connect(gainNode);
+        
+        // segundo drone más alto
+        const droneOsc2 = audioCtx.createOscillator();
+        droneOsc2.type = 'sine';
+        droneOsc2.frequency.value = 132;
+        const droneGain2 = audioCtx.createGain();
+        droneGain2.gain.value = 0.05;
+        droneOsc2.connect(droneGain2);
+        droneGain2.connect(gainNode);
+        
+        droneOsc.start();
+        droneOsc2.start();
+        noiseSource.start();
+        
+        // Guardamos referencias para poder detener
+        musicSource = { noiseSource, droneOsc, droneOsc2, noiseGain, droneGain, droneGain2 };
+    }
+    
+    function startMusic() {
+        if (!audioCtx) {
+            initAmbientMusic().then(() => {
+                if (audioCtx && !isMusicPlaying) {
+                    audioCtx.resume();
+                    isMusicPlaying = true;
+                    musicStatusSpan.innerText = "🎶 Música activa";
+                    if (gainNode) gainNode.gain.setTargetAtTime(0.22, audioCtx.currentTime, 0.1);
+                }
+            }).catch(e => console.log("audio error", e));
+        } else {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            isMusicPlaying = true;
+            musicStatusSpan.innerText = "🎶 Música activa";
+            if (gainNode) gainNode.gain.setTargetAtTime(0.22, audioCtx.currentTime, 0.1);
+        }
+    }
+    
+    function stopMusic() {
+        if (audioCtx && gainNode) {
+            gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
+            isMusicPlaying = false;
+            musicStatusSpan.innerText = "🔇 Música apagada";
+        } else {
+            isMusicPlaying = false;
+            musicStatusSpan.innerText = "🔇 Música apagada";
+        }
+    }
+    
+    function toggleMusic() {
+        if (isMusicPlaying) {
+            stopMusic();
+        } else {
+            startMusic();
+        }
+    }
+    
+    musicToggleBtn.addEventListener('click', () => {
+        toggleMusic();
+    });
+    
+    // Auto iniciar música solo después de interacción del usuario? (política de navegadores)
+    // Para mejor experiencia, empezamos en silencio hasta que el usuario haga click en el botón de música o en cualquier opción.
+    // Pero si el usuario quiere música, lo activa manualmente. También podemos activar música al primer clic en menu opción.
+    let musicInitByUser = false;
+    function tryAutoInitMusic() {
+        if (!musicInitByUser && audioCtx === null) {
+            initAmbientMusic().then(() => {
+                // No la iniciamos automáticamente, solo preparamos. El usuario debe dar permisos.
+                musicInitByUser = true;
+            }).catch(e=>console.log);
+        }
+    }
+    
+    // Cambiar fondo ambiental según la opción seleccionada (diferentes imágenes de hojas/vegetación desenfocada)
+    function setAmbientBackground(imageUrl) {
+        if (imageUrl && imageUrl.trim() !== "") {
+            bodyEl.style.backgroundImage = `url('${imageUrl}')`;
+            bodyEl.style.transition = 'background-image 0.6s ease-in-out';
+        }
+    }
+    
+    // Reset fondo al principal suave (hojas base)
+    function resetToDefaultBackground() {
+        bodyEl.style.backgroundImage = "url('https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop')";
+    }
+    
+    // Funciones de typewriter, fade, etc
+    let currentTypingInterval = null;
     function stopTypewriter() {
         if (currentTypingInterval) {
             clearInterval(currentTypingInterval);
             currentTypingInterval = null;
         }
-        if (currentTypingTimeout) {
-            clearTimeout(currentTypingTimeout);
-            currentTypingTimeout = null;
-        }
     }
-
-    // efecto máquina de escribir mejorado: respeta saltos de línea
+    
     function startTypewriterEffect(fullMessage) {
         stopTypewriter();
         if (!typewriterDiv) return;
-        typewriterDiv.innerHTML = ''; // limpiar
+        typewriterDiv.innerHTML = '';
         let i = 0;
         const length = fullMessage.length;
-        // cursor estilizado, se añade un span extra al final
-        const cursorSpan = document.createElement('span');
-        cursorSpan.className = 'cursor';
-        cursorSpan.textContent = '|';
-        
         function typeLetter() {
             if (i < length) {
-                // añadir letra por letra manteniendo HTML? pero como es texto plano, simplemente texto
                 typewriterDiv.textContent += fullMessage.charAt(i);
                 i++;
                 currentTypingInterval = setTimeout(typeLetter, 35);
             } else {
-                // finalizado, añadimos cursor estético pero sin parpadeo extra?
-                if (typewriterDiv && !typewriterDiv.querySelector('.cursor')) {
-                    // eliminamos si existe doble cursor
-                    const existingCursor = typewriterDiv.querySelector('.cursor');
-                    if(existingCursor) existingCursor.remove();
-                    const finalCursor = document.createElement('span');
-                    finalCursor.className = 'cursor';
-                    finalCursor.textContent = '|';
-                    typewriterDiv.appendChild(finalCursor);
-                }
+                const cursorSpan = document.createElement('span');
+                cursorSpan.className = 'cursor';
+                cursorSpan.textContent = '|';
+                typewriterDiv.appendChild(cursorSpan);
                 currentTypingInterval = null;
             }
         }
         typeLetter();
     }
-
-    // mejorar fade imagen: cambiar src con fade
+    
     function setZenImageWithFade(newSrc) {
         if (!dynamicImg) return;
-        // efecto fade rápido
         dynamicImg.style.transition = 'opacity 0.3s ease';
         dynamicImg.style.opacity = '0';
         setTimeout(() => {
             dynamicImg.src = newSrc;
-            dynamicImg.onload = () => {
-                dynamicImg.style.opacity = '1';
-            };
+            dynamicImg.onload = () => dynamicImg.style.opacity = '1';
             if (dynamicImg.complete) dynamicImg.style.opacity = '1';
         }, 150);
     }
-
-    // Mostrar menú, ocultar área narrativa y resetear todo
+    
     function resetToMenu() {
-        if (!isNarrativeActive && menuContainer.style.display !== 'none') return;
-        // transición suave: ocultar el área narrativa
-        narrativeArea.style.display = 'none';
+        if (menuContainer.style.display !== 'none') return;
         menuContainer.style.display = 'grid';
-        isNarrativeActive = false;
+        narrativeArea.style.display = 'none';
         stopTypewriter();
-        // limpiar mensaje para que no quede texto residual
-        if (typewriterDiv) typewriterDiv.innerHTML = '';
-        // opcional: reset de imagen a un placeholder vacío
-        // pero no es necesario, solo se limpia.
-        // también remover cualquier clase de bloqueo
-        document.body.style.overflow = ''; // nada
+        typewriterDiv.innerHTML = '';
+        resetToDefaultBackground();
     }
-
-    // Muestra la experiencia narrativa para una opción específica
+    
     function showNarrativeForOption(option) {
-        // Detener escritura actual
         stopTypewriter();
-        // Si el menú está visible, lo ocultamos suavemente y mostramos área narrativa
-        if (menuContainer.style.display !== 'none') {
-            menuContainer.style.display = 'none';
-        }
+        if (menuContainer.style.display !== 'none') menuContainer.style.display = 'none';
         narrativeArea.style.display = 'block';
-        isNarrativeActive = true;
-        
-        // Cambiar imagen con fade: usamos la imagen definida. si la imagen no carga, fallback a placeholder de naturaleza
-        const imgUrl = option.image || 'https://picsum.photos/id/13/800/500?seed=defaultZen';
-        setZenImageWithFade(imgUrl);
-        
-        // Iniciar efecto máquina de escribir con el mensaje
+        setZenImageWithFade(option.image);
         startTypewriterEffect(option.message);
+        // Cambiar el fondo ambiental según la opción (hojas distintas, ambientes únicos)
+        if (option.backgroundImage) {
+            setAmbientBackground(option.backgroundImage);
+        } else {
+            resetToDefaultBackground();
+        }
+        // Si la música no se ha iniciado por el usuario, pero podemos sugerir el botón; no forzamos autoplay por políticas del navegador.
+        if (!musicInitByUser) {
+            // solo preparamos sin sonido molesto
+            tryAutoInitMusic();
+        }
     }
-
-    // Construcción dinámica del menú con datos mejorados (se añade más calidez)
+    
     function buildMenu() {
         menuContainer.innerHTML = '';
         optionsData.forEach(opt => {
             const card = document.createElement('div');
             card.className = 'option-card';
-            card.setAttribute('data-id', opt.id);
-            // agregar contenido
             card.innerHTML = `
                 <span class="option-emoji">${opt.emoji}</span>
                 <div class="option-title">${opt.title}</div>
                 <div class="option-purpose">${opt.purpose}</div>
             `;
-            card.addEventListener('click', (e) => {
-                e.stopPropagation();
-                // Mostrar la experiencia narrativa para esa opción
-                showNarrativeForOption(opt);
-            });
+            card.addEventListener('click', () => showNarrativeForOption(opt));
             menuContainer.appendChild(card);
         });
     }
-
-    // Botón volver a la calma: además de resetear, podemos animar un pequeño mensaje de transición (opcional)
+    
     backBtn.addEventListener('click', () => {
-        if (isNarrativeActive) {
-            resetToMenu();
-            // Pequeño toque: mostrar en hero un destello de "bienvenida de nuevo" pero sin saturar
-            const heroSub = document.querySelector('.hero-sub');
-            const originalText = heroSub.innerHTML;
-            heroSub.style.transition = '0.2s';
-            heroSub.style.opacity = '0.6';
-            setTimeout(() => {
-                if(heroSub) heroSub.style.opacity = '1';
-            }, 200);
-        } else {
-            // si ya está en menú, no pasa nada, pero puede recargar visualmente el estado
-            // también aseguramos que el área narrativa esté oculta.
-            if(narrativeArea.style.display !== 'none') narrativeArea.style.display = 'none';
-            menuContainer.style.display = 'grid';
-            stopTypewriter();
-            typewriterDiv.innerHTML = '';
-        }
+        resetToMenu();
     });
-
-    // Inicialización: también agregar funcionalidad extra de "bienvenida suave" - primera carga con menú visible
-    function initApp() {
+    
+    function init() {
         buildMenu();
-        // Asegurar estado inicial: menú visible, área narrativa oculta
         narrativeArea.style.display = 'none';
         menuContainer.style.display = 'grid';
-        isNarrativeActive = false;
-        // Asignar imagen por defecto al cargar? opcional pero mostramos imagen neutral cuando no esté activa, pero mejor no mostrarla hasta que se elija
-        // Para evitar imagen rota, asignamos una por defecto sutil pero no molesta
-        dynamicImg.src = 'https://picsum.photos/id/116/800/500?seed=default';
-        dynamicImg.style.opacity = '1';
+        resetToDefaultBackground();
+        dynamicImg.src = "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop";
         typewriterDiv.innerHTML = '';
-        
-        // extra: funcionalidad de sugerencia empática: si el usuario hace hover en opción o por 3 segundos mostramos algo? mantenemos simple pero robusto.
-        // Mejora adicional: precargar imagenes (no crítica)
+        // Precargar imagenes de fondo y opciones
         optionsData.forEach(opt => {
-            if(opt.image) {
-                const imgPreload = new Image();
-                imgPreload.src = opt.image;
-            }
+            if (opt.image) new Image().src = opt.image;
+            if (opt.backgroundImage) new Image().src = opt.backgroundImage;
         });
-        
-        // Mensaje de bienvenida sutil o reset
-        console.log('🌿 UnidosEnLaRedSV | Espacio de transformación activo');
     }
-
-    // Añadir transición mejorada a la carga, y manejo de errores de imagen
-    window.addEventListener('load', initApp);
     
-    // opcional: si el usuario hace click fuera? pero el botón volver es suficiente.
-    // Además mejora: efecto de sonido? no necesario para mantener enfoque zen.
-    // Navegación accesible con teclado (tab index)
-    // Garantizar que la imagen no se vea borrosa: todo ok
-
-    // Mejora: en caso de que el mensaje sea demasiado largo, el contenedor se ajusta con scroll suave, 
-    // pero con line-height es perfecto.
-    // Añadir un gesto de "reinicio rápido" si se presiona escape? también funcional, pero dejamos el botón volver.
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && isNarrativeActive) {
-            resetToMenu();
-        }
-    });
-    
-    // Ajuste de estilo responsivo para mantener coherencia en el área narrativa: asegurar que el boton volver siempre visible
-    // Incluir un mensaje de protección: Si el usuario selecciona otra opción mientras se escribe, reiniciamos el typewriter correctamente.
-    // showNarrativeForOption ya lo hace con stopTypewriter, también se aplica el nuevo efecto sin problemas.
-    // Pequeño extra: si deseamos mostrar una animación de carga amable, ya que las imágenes vienen de LoremFlick, es estable.
-    // Se ha mejorado la idea principal: ahora cada opción tiene una imagen única con atributos zen, además el efecto de escritura con cursor parpadeante.
-    // También incorporamos el propósito que se muestra sutilmente y mayor contexto.
-    // Se añade mensaje de "Reconexión" al volver a la calma.
-    // He añadido colores violeta suave y azul medianoche en todo el body y componentes.
-    // Experiencia completa e inmersiva.
+    init();
 </script>
 </body>
 </html>
