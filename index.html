@@ -2,98 +2,558 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espacio de Respeto Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Espacio de Respeto Digital | Un refugio contra el ciberacoso</title>
+    <!-- Fuente moderna y destacada -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (gratuito) para iconos e imágenes vectoriales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        
-        body {
+        * {
             margin: 0;
-            background: radial-gradient(circle at 10% 20%, rgb(239, 246, 255) 0%, rgb(219, 234, 254) 90%);
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f6f9ff 0%, #e9f0fa 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .hero { text-align: center; margin-bottom: 40px; padding-top: 50px; }
-        .hero h1 { color: #1e3a8a; font-size: 2.5rem; }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
+        /* ----- fondo animado con partículas flotantes y ondas suaves ----- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(110, 150, 240, 0.08) 0%, rgba(70, 110, 200, 0.02) 80%);
+            pointer-events: none;
+            z-index: -2;
         }
 
-        .card {
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-shapes span {
+            position: absolute;
+            display: block;
             background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 30px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center;
+            backdrop-filter: blur(6px);
+            border-radius: 50%;
+            animation: floatAround 20s infinite linear;
+            opacity: 0.3;
         }
 
-        .card:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.6); }
+        @keyframes floatAround {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-        #display-area {
-            margin-top: 50px;
-            background: #ffffff;
-            padding: 40px;
+        /* contenedor principal */
+        .main-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sección hero con imagen/imagenes añadidas */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 4rem;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .hero-image {
+            display: inline-flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image img {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            animation: gentleBounce 3s infinite ease-in-out;
+            transition: transform 0.2s;
+        }
+
+        .hero-image img:nth-child(2) { animation-delay: 0.4s; }
+        .hero-image img:nth-child(3) { animation-delay: 0.8s; }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .hero-section h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1E3A8A, #3B82F6, #06b6d4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-section p {
+            color: #1e293b;
+            font-weight: 500;
+            background: rgba(255,255,240,0.7);
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            font-size: 1.1rem;
+        }
+
+        /* Grid de tarjetas mejoradas con imágenes */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0 2rem;
+        }
+
+        .card-item {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+            transform: translateY(0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(59,130,246,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .card-item:hover {
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.2);
+            border-color: #b8d1ff;
+        }
+
+        .card-item:hover::after {
+            opacity: 1;
+        }
+
+        /* imagen dentro de cada tarjeta (más imágenes) */
+        .card-img {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(145deg, #ffffff, #eef4ff);
             border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 800px;
-            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .card-item:hover .card-img {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .card-img img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+        }
+
+        .card-item h3 {
             font-size: 1.5rem;
-            color: #334155;
+            font-weight: 600;
+            color: #0f2b5e;
+            margin: 0.7rem 0 0.3rem;
+        }
+
+        .card-item p {
+            font-size: 0.9rem;
+            color: #2c3e66;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+
+        /* Área de visualización principal con animaciones e imagen dinamica */
+        .display-panel {
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255,255,255,0.8);
+            padding: 2rem;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255,255,245,0.8);
+            min-height: 240px;
+        }
+
+        .message-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transition: all 0.4s;
+        }
+
+        .dynamic-image {
+            flex: 0 0 120px;
             text-align: center;
+            animation: imagePop 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+
+        .dynamic-image img {
+            width: 110px;
+            height: 110px;
+            filter: drop-shadow(0 10px 12px rgba(0,0,0,0.15));
+            transition: transform 0.3s;
+        }
+
+        .dynamic-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .message-text {
+            flex: 1;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #0f172a;
+            line-height: 1.4;
+            text-align: left;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: #1f2a48;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        }
+
+        @keyframes imagePop {
+            0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+            60% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        /* contenedor de imágenes extra: galería de apoyo */
+        .extra-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2.5rem 0 1rem;
+            padding: 1rem 0.5rem;
+            background: rgba(255,255,245,0.5);
+            border-radius: 3rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .gallery-icon {
+            background: white;
+            padding: 10px 16px;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            color: #1f4172;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .gallery-icon i {
+            font-size: 1.7rem;
+            color: #3b82f6;
+        }
+
+        .gallery-icon:hover {
+            transform: translateY(-4px);
+            background: #f0f7ff;
+            cursor: default;
+        }
+
+        /* footer sutil */
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-top: 2rem;
+            padding: 1rem;
+            border-top: 1px dashed rgba(59,130,246,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 750px) {
+            .message-text {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+            .message-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-section h1 {
+                font-size: 1.7rem;
+            }
+            .card-img {
+                width: 70px;
+                height: 70px;
+            }
+            .card-img img {
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        /* animación de entrada al cargar */
+        .card-item {
             opacity: 0;
-            transition: opacity 0.8s ease;
+            animation: cardGlide 0.6s ease forwards;
+        }
+        .card-item:nth-child(1) { animation-delay: 0.05s; }
+        .card-item:nth-child(2) { animation-delay: 0.15s; }
+        .card-item:nth-child(3) { animation-delay: 0.25s; }
+        .card-item:nth-child(4) { animation-delay: 0.35s; }
+
+        @keyframes cardGlide {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* on click efecto */
+        .click-ripple {
+            animation: rippleCard 0.3s ease-out;
+        }
+
+        @keyframes rippleCard {
+            0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.5); transform: scale(0.98);}
+            70% { box-shadow: 0 0 0 12px rgba(59,130,246,0); transform: scale(1);}
+            100% { box-shadow: 0 0 0 0 rgba(59,130,246,0);}
+        }
+
+        .panel-animate {
+            animation: panelFlash 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes panelFlash {
+            0% { transform: scale(0.97); background: rgba(255,255,240,0.7); }
+            100% { transform: scale(1); background: rgba(255, 255, 255, 0.92); }
         }
     </style>
 </head>
 <body>
+<div class="floating-shapes" id="floatShapes"></div>
 
-    <div class="hero">
-        <h1>Tu opinión importa en la lucha contra el ciberacoso</h1>
-        <p>Haz clic en una opción para encontrar un mensaje de apoyo.</p>
+<div class="main-wrapper">
+    <!-- Hero mejorado con múltiples imágenes SVG reales (más imágenes) -->
+    <div class="hero-section">
+        <div class="hero-image">
+            <!-- imágenes con código inline en base64 / emojis pero img reales via svg data -->
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ffe0b5'/%3E%3Cpath fill='%23f97316' d='M30 40 L70 40 L65 65 L35 65 Z'/%3E%3Ccircle cx='40' cy='55' r='4' fill='white'/%3E%3Ccircle cx='60' cy='55' r='4' fill='white'/%3E%3C/svg%3E"
+                 alt="apoyo alegre">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%238ab4f8' d='M50,15 L65,40 L92,45 L72,65 L78,92 L50,78 L22,92 L28,65 L8,45 L35,40 Z'/%3E%3Ccircle cx='50' cy='48' r='8' fill='%23fff1c1'/%3E%3C/svg%3E"
+                 alt="estrella apoyo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23fbcfe8' rx='20'/%3E%3Cpath fill='%23ec4899' d='M50 30 L58 48 L78 52 L63 66 L67 86 L50 76 L33 86 L37 66 L22 52 L42 48 Z'/%3E%3C/svg%3E"
+                 alt="corazón aliado">
+        </div>
+        <h1>✨ Espacio de Respeto Digital ✨</h1>
+        <p>🛡️ Tu voz es poder · La amabilidad transforma 🌱</p>
     </div>
 
-    <div class="container">
-        <div class="card" onclick="updateDisplay('La empatía es una elección. Al ser amable, estás demostrando una fuerza que el acosador nunca entenderá.')">
+    <!-- Tarjetas con mensajes de apoyo, cada una con imagen propia -->
+    <div class="cards-grid">
+        <!-- Tarjeta 1: Empatía y acosador -->
+        <div class="card-item" data-message="La empatía es una elección. Al ser amable, estás demostrando una fuerza que el acosador nunca entenderá." 
+             data-image='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Ccircle cx="60" cy="60" r="55" fill="%23c4e0fa"/%3E%3Cpath fill="%233b82f6" d="M40 50 L80 50 L75 75 L45 75 Z"/%3E%3Ccircle cx="48" cy="63" r="4" fill="white"/%3E%3Ccircle cx="72" cy="63" r="4" fill="white"/%3E%3Cpath stroke="%23ffffff" stroke-width="3" d="M55 80 L65 80"/%3E%3C/svg%3E'>
+            <div class="card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23dcfce7'/%3E%3Cpath fill='%2310b981' d='M35 48 L48 61 L68 40' stroke='white' stroke-width='4' fill='none'/%3E%3C/svg%3E" alt="icono corazón"></div>
             <h3>¿Qué decir al acosador?</h3>
+            <p>Firmeza sin odio · Límites respetuosos</p>
         </div>
-        <div class="card" onclick="updateDisplay('Recuerda: eres valioso/a, eres importante y lo que otros digan bajo el anonimato no define quién eres.')">
+        <!-- Tarjeta 2: Si estás pasando por esto (apoyo a víctima) -->
+        <div class="card-item" data-message="Recuerda: eres valioso/a, eres importante y lo que otros digan bajo el anonimato no define quién eres." 
+             data-image='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Crect width="120" height="120" fill="%23fef9c3" rx="30"/%3E%3Cpath fill="%23eab308" d="M60 30 L78 55 L70 85 L50 85 L42 55 L60 30Z"/%3E%3Ccircle cx="60" cy="63" r="8" fill="%23fff"/%3E%3C/svg%3E'>
+            <div class="card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23facc15' d='M50 25 L70 60 L85 50 L70 80 L50 95 L30 80 L15 50 L30 60 Z'/%3E%3C/svg%3E" alt="luz"></div>
             <h3>Si estás pasando por esto...</h3>
+            <p>Eres más fuerte que el silencio</p>
         </div>
-        <div class="card" onclick="updateDisplay('Muchas veces, una sola palabra de apoyo cambia la vida de alguien. ¿Alguna vez has sido esa luz para alguien?')">
+        <!-- Tarjeta 3: Tu impacto -->
+        <div class="card-item" data-message="Muchas veces, una sola palabra de apoyo cambia la vida de alguien. ¿Alguna vez has sido esa luz para alguien?" 
+             data-image='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Cpath fill="%23ffedd5" d="M0 0 L120 0 L120 120 L0 120 Z"/%3E%3Ccircle fill="%23fb923c" cx="60" cy="55" r="28"/%3E%3Cpath fill="%23ffb347" d="M60 15 L72 43 L100 46 L80 66 L88 94 L60 79 L32 94 L40 66 L20 46 L48 43 Z"/%3E%3C/svg%3E'>
+            <div class="card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23f59e0b' d='M50 15 L58 42 L88 42 L64 58 L73 84 L50 68 L27 84 L36 58 L12 42 L42 42 Z'/%3E%3C/svg%3E" alt="impacto estrella"></div>
             <h3>Tu impacto</h3>
+            <p>Un gesto puede ser revolución</p>
         </div>
-        <div class="card" onclick="updateDisplay('Tu voz importa. No te quedes en silencio, buscar defensa es un acto de valentía, no de debilidad.')">
+        <!-- Tarjeta 4: El valor de defenderse -->
+        <div class="card-item" data-message="Tu voz importa. No te quedes en silencio, buscar defensa es un acto de valentía, no de debilidad." 
+             data-image='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Cpath fill="%23d9f99d" d="M20 30 L100 30 L100 100 L20 100 Z" rx="20"/%3E%3Cpath fill="%2316a34a" d="M60 35 L75 60 L69 75 L51 75 L45 60 Z"/%3E%3Crect x="53" y="44" width="14" height="28" fill="%23fcd34d"/%3E%3C/svg%3E'>
+            <div class="card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%233b82f6' d='M50 20 L70 36 L70 60 L50 80 L30 60 L30 36 Z' stroke='white' stroke-width='2'/%3E%3C/svg%3E" alt="escudo"></div>
             <h3>El valor de defenderse</h3>
+            <p>Pedir ayuda es fortaleza</p>
         </div>
     </div>
 
-    <div id="display-area">Tu mensaje aparecerá aquí al seleccionar una opción...</div>
+    <!-- Área de visualización con imagen dinámica y mensaje -->
+    <div class="display-panel" id="displayPanel">
+        <div class="message-container" id="messageContainer">
+            <div class="dynamic-image" id="dynamicImage">
+                <img id="supportImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle fill='%23cbd5e1' cx='60' cy='60' r='50'/%3E%3Ctext x='60' y='75' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3E❤️%3C/text%3E%3C/svg%3E" alt="imagen de apoyo">
+            </div>
+            <div class="message-text" id="supportMessage">
+                Tu mensaje aparecerá aquí al seleccionar una opción...
+            </div>
+        </div>
+    </div>
 
-    <script>
-        function updateDisplay(text) {
-            const area = document.getElementById('display-area');
-            area.style.opacity = 0;
-            setTimeout(() => {
-                area.innerText = text;
-                area.style.opacity = 1;
-            }, 500);
+    <!-- Galería extra de imágenes/emojis solidarios (más imágenes y estética) -->
+    <div class="extra-gallery">
+        <div class="gallery-icon"><i class="fas fa-hand-holding-heart"></i> <span>Apoyo mutuo</span></div>
+        <div class="gallery-icon"><i class="fas fa-shield-alt"></i> <span>Espacio seguro</span></div>
+        <div class="gallery-icon"><i class="fas fa-comment-dots"></i> <span>Escucha activa</span></div>
+        <div class="gallery-icon"><i class="fas fa-users"></i> <span>Comunidad unida</span></div>
+    </div>
+
+    <div class="footer-note">
+        🌟 Cada clic es un paso hacia la empatía digital 🌟
+    </div>
+</div>
+
+<script>
+    // Enlazar eventos a las tarjetas y manejar las animaciones mejoradas + imágenes
+    const cards = document.querySelectorAll('.card-item');
+    const displayMessageDiv = document.getElementById('supportMessage');
+    const displayImg = document.getElementById('supportImg');
+    const panel = document.getElementById('displayPanel');
+
+    // mensajes predefinidos en data y los images tambien
+    function updateDisplayWithImage(message, imageSrc) {
+        // Aplicar animación de fade y scale al panel
+        panel.classList.add('panel-animate');
+        // Animación de cambio suave en imagen y texto
+        displayMessageDiv.style.opacity = '0';
+        displayImg.style.opacity = '0';
+        
+        setTimeout(() => {
+            displayMessageDiv.innerText = message;
+            displayImg.src = imageSrc;
+            displayImg.alt = "imagen de apoyo emocional";
+            displayMessageDiv.style.opacity = '1';
+            displayImg.style.opacity = '1';
+        }, 120);
+        
+        setTimeout(() => {
+            panel.classList.remove('panel-animate');
+        }, 500);
+    }
+
+    // Función para añadir efecto ripple al hacer clic
+    function addRippleEffect(card) {
+        card.classList.add('click-ripple');
+        setTimeout(() => {
+            card.classList.remove('click-ripple');
+        }, 300);
+    }
+
+    // Asignar click a cada carta
+    cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const message = card.getAttribute('data-message');
+            const imageUrl = card.getAttribute('data-image');
+            if (message && imageUrl) {
+                updateDisplayWithImage(message, imageUrl);
+                addRippleEffect(card);
+            } else {
+                // fallback de seguridad
+                updateDisplayWithImage("Elige sabiamente: cada mensaje cuenta. Juntos contra el ciberacoso.", "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle fill='%2387CEEB' cx='50' cy='50' r='45'/%3E%3Ctext x='50' y='70' font-size='40' text-anchor='middle' fill='white'%3E🤝%3C/text%3E%3C/svg%3E");
+                addRippleEffect(card);
+            }
+        });
+    });
+
+    // crear partículas flotantes en el fondo (animación extra)
+    function createFloatingShapes() {
+        const container = document.getElementById('floatShapes');
+        const shapesCount = 28;
+        for (let i = 0; i < shapesCount; i++) {
+            const shape = document.createElement('span');
+            const size = Math.random() * 70 + 20;
+            shape.style.width = size + 'px';
+            shape.style.height = size + 'px';
+            shape.style.left = Math.random() * 100 + '%';
+            shape.style.animationDuration = Math.random() * 15 + 12 + 's';
+            shape.style.animationDelay = Math.random() * 10 + 's';
+            shape.style.background = `rgba(${Math.floor(Math.random() * 100 + 100)}, ${Math.floor(Math.random() * 150 + 100)}, 255, 0.2)`;
+            shape.style.borderRadius = Math.random() > 0.5 ? '50%' : '30% 70% 70% 30% / 30% 30% 70% 70%';
+            container.appendChild(shape);
         }
-    </script>
+    }
+    createFloatingShapes();
+
+    // inicializar con mensaje por defecto y una imagen por defecto especial
+    const defaultImg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle fill='%23bae6fd' cx='60' cy='60' r='50'/%3E%3Cpath fill='%23028c8c' d='M40 45 L80 45 L75 75 L45 75 Z'/%3E%3Ccircle cx='50' cy='62' r='3' fill='white'/%3E%3Ccircle cx='70' cy='62' r='3' fill='white'/%3E%3C/svg%3E";
+    displayImg.src = defaultImg;
+    displayMessageDiv.innerText = "💬 Elige una tarjeta para recibir palabras de fuerza y una imagen que te acompañe. Recuerda: no estás solo/a. 💬";
+    
+    // Hover adicional en imagen dinámica
+    displayImg.addEventListener('mouseenter', () => {
+        displayImg.style.transform = 'scale(1.02)';
+    });
+    displayImg.addEventListener('mouseleave', () => {
+        displayImg.style.transform = 'scale(1)';
+    });
+</script>
 </body>
 </html>
