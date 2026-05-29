@@ -3,70 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serenidad Digital | Lucha contra el Ciberacoso</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Espacio de Respeto Digital</title>
     <style>
-        :root { --primary: #6366f1; --bg: #f8fafc; --text: #1e293b; }
-        body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         
-        /* Hero Section */
-        header { height: 80vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80'); background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; }
-        
-        /* Container */
-        .container { max-width: 900px; margin: -100px auto 50px; background: white; padding: 4rem; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        
-        /* Interactive Buttons Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 3rem; }
-        .btn-card { border: 1px solid #e2e8f0; padding: 2rem; border-radius: 20px; cursor: pointer; transition: 0.4s; background: #fff; text-align: center; }
-        .btn-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15); }
-        
-        /* Result Area */
-        #display { margin-top: 4rem; padding: 3rem; background: #f1f5f9; border-radius: 20px; font-style: italic; font-size: 1.4rem; opacity: 0; transition: opacity 0.5s; }
-        .visible { opacity: 1 !important; }
+        body {
+            margin: 0;
+            background: radial-gradient(circle at 10% 20%, rgb(239, 246, 255) 0%, rgb(219, 234, 254) 90%);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .hero { text-align: center; margin-bottom: 40px; padding-top: 50px; }
+        .hero h1 { color: #1e3a8a; font-size: 2.5rem; }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+
+        .card:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.6); }
+
+        #display-area {
+            margin-top: 50px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #334155;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <div>
-        <h1>Tu opinión importa</h1>
-        <p>Construyendo juntos un espacio de respeto y empatía digital.</p>
+    <div class="hero">
+        <h1>Tu opinión importa en la lucha contra el ciberacoso</h1>
+        <p>Haz clic en una opción para encontrar un mensaje de apoyo.</p>
     </div>
-</header>
 
-<div class="container">
-    <h2 style="text-align: center; font-family: 'Playfair Display';">¿Cómo te sientes hoy?</h2>
-    
-    <div class="grid">
-        <div class="btn-card" onclick="show('El cambio empieza con una sola palabra amable. Tu empatía es la herramienta más poderosa para transformar el entorno.')">
-            <h3>Reflexión</h3>
-            <p>Para quien necesita un poco de luz hoy.</p>
+    <div class="container">
+        <div class="card" onclick="updateDisplay('La empatía es una elección. Al ser amable, estás demostrando una fuerza que el acosador nunca entenderá.')">
+            <h3>¿Qué decir al acosador?</h3>
         </div>
-        <div class="btn-card" onclick="show('Tu valor no depende de los comentarios de otros. Eres una persona increíble y única, no lo olvides.')">
-            <h3>Apoyo</h3>
-            <p>Palabras de aliento para ti.</p>
+        <div class="card" onclick="updateDisplay('Recuerda: eres valioso/a, eres importante y lo que otros digan bajo el anonimato no define quién eres.')">
+            <h3>Si estás pasando por esto...</h3>
         </div>
-        <div class="btn-card" onclick="show('El silencio a veces es la respuesta más digna ante el odio. Protege tu paz mental.')">
-            <h3>Defensa</h3>
-            <p>Cómo protegerte en el mundo digital.</p>
+        <div class="card" onclick="updateDisplay('Muchas veces, una sola palabra de apoyo cambia la vida de alguien. ¿Alguna vez has sido esa luz para alguien?')">
+            <h3>Tu impacto</h3>
         </div>
-        <div class="btn-card" onclick="show('Estamos creando redes seguras. Tu participación es clave para un internet más humano.')">
-            <h3>Comunidad</h3>
-            <p>Unidos por un fin común.</p>
+        <div class="card" onclick="updateDisplay('Tu voz importa. No te quedes en silencio, buscar defensa es un acto de valentía, no de debilidad.')">
+            <h3>El valor de defenderse</h3>
         </div>
     </div>
 
-    <div id="display">Selecciona una opción para leer un mensaje de paz.</div>
-</div>
+    <div id="display-area">Tu mensaje aparecerá aquí al seleccionar una opción...</div>
 
-<script>
-    function show(msg) {
-        const d = document.getElementById('display');
-        d.innerText = msg;
-        d.classList.add('visible');
-    }
-</script>
-
+    <script>
+        function updateDisplay(text) {
+            const area = document.getElementById('display-area');
+            area.style.opacity = 0;
+            setTimeout(() => {
+                area.innerText = text;
+                area.style.opacity = 1;
+            }, 500);
+        }
+    </script>
 </body>
 </html>
