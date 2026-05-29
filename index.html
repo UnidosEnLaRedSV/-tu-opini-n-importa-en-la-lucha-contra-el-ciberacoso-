@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Unidos En La Red SV | Transformando el ruido digital en empatía</title>
-    <!-- Fuentes y estilos base -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,7 +12,7 @@
             box-sizing: border-box;
         }
 
-        /* Fondo principal con imagen de hojas desenfocadas (ambiente natural) */
+        /* Fondo principal: PAISAJE BORROSO (montañas/atardecer) */
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -22,15 +21,14 @@
             justify-content: center;
             padding: 2rem 1.5rem;
             position: relative;
-            /* Imagen de fondo: hojas de árbol desenfocadas, ambiente bohemio/natural */
-            background-image: url('https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop');
+            background-image: url('https://images.pexels.com/photos/2437292/pexels-photo-2437292.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            transition: background-image 0.6s ease-in-out;
+            transition: background-image 0.8s ease-in-out;
         }
 
-        /* Capa de desenfoque y oscurecimiento suave para legibilidad */
+        /* Capa de desenfoque y oscurecimiento suave para que el texto sea legible */
         body::before {
             content: "";
             position: fixed;
@@ -38,86 +36,113 @@
             left: 0;
             width: 100%;
             height: 100%;
-            backdrop-filter: blur(8px);
-            background: rgba(10, 15, 30, 0.55);
+            backdrop-filter: blur(10px);
+            background: rgba(20, 25, 45, 0.45);
             z-index: 0;
             pointer-events: none;
         }
 
-        /* Contenedor principal con glassmorphism sutil */
         .app-container {
             position: relative;
             z-index: 2;
             max-width: 1280px;
             width: 100%;
-            background: rgba(12, 20, 30, 0.65);
-            backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(3px);
             border-radius: 3rem;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
-            border: 1px solid rgba(120, 100, 200, 0.3);
         }
 
-        /* contenido interno */
         .main-content {
             padding: 2rem 2rem 2rem 2rem;
         }
 
-        /* Hero */
+        /* Hero con animación de escritura */
         .hero {
             text-align: center;
-            margin-bottom: 3.5rem;
-            border-bottom: 1px dashed rgba(150, 130, 220, 0.4);
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(150, 140, 180, 0.3);
             padding-bottom: 2rem;
         }
 
         .hero h1 {
             font-size: clamp(1.8rem, 6vw, 3.2rem);
             font-weight: 700;
-            background: linear-gradient(135deg, #FFFFFF, #e0d6ff, #cbb5ff);
+            background: linear-gradient(135deg, #1f1c3c, #4a3f8a, #2c3e66);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.02em;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            min-height: 4.5rem;
         }
 
         .hero-sub {
             font-size: 1.1rem;
-            color: #e0e7ff;
+            color: #2c2e4e;
             max-width: 680px;
             margin: 0 auto;
-            font-weight: 400;
             line-height: 1.5;
+            min-height: 3.3rem;
+            font-weight: 500;
         }
 
-        /* Menú de opciones (grid transformador) */
+        .hero-cursor {
+            display: inline-block;
+            width: 3px;
+            margin-left: 4px;
+            background-color: #6c5bcf;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
-            margin: 3rem 0 2rem;
+            margin: 2.5rem 0 2rem;
         }
 
         .option-card {
-            background: rgba(25, 32, 48, 0.75);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
             border-radius: 2rem;
             padding: 1.6rem 1.2rem;
-            transition: all 0.25s ease-in-out;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
-            border: 1px solid rgba(130, 110, 210, 0.4);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(200, 190, 230, 0.8);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardFadeInUp 0.5s forwards;
+        }
+
+        .option-card:nth-child(1) { animation-delay: 0.05s; }
+        .option-card:nth-child(2) { animation-delay: 0.1s; }
+        .option-card:nth-child(3) { animation-delay: 0.15s; }
+        .option-card:nth-child(4) { animation-delay: 0.2s; }
+        .option-card:nth-child(5) { animation-delay: 0.25s; }
+
+        @keyframes cardFadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .option-card:hover {
             transform: translateY(-6px);
-            background: rgba(55, 65, 100, 0.85);
-            border-color: rgba(170, 140, 255, 0.8);
-            box-shadow: 0 18px 28px -10px rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+            border-color: #b8adf0;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
         }
 
         .option-emoji {
@@ -130,51 +155,55 @@
             font-weight: 700;
             font-size: 1.35rem;
             margin-bottom: 0.5rem;
-            color: #f2ecff;
+            color: #2b2d42;
         }
 
         .option-purpose {
             font-size: 0.85rem;
-            color: #cbd5ff;
+            color: #6b6f8b;
             line-height: 1.4;
         }
 
-        /* Área de experiencia narrativa (refugio visual) */
         .narrative-area {
             margin: 2rem 0 1.5rem;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(250, 250, 255, 0.8);
             border-radius: 2rem;
             padding: 1.8rem;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(110, 90, 180, 0.5);
+            border: 1px solid rgba(180, 170, 230, 0.7);
+            animation: fadeScale 0.4s ease;
+        }
+
+        @keyframes fadeScale {
+            from { opacity: 0; transform: scale(0.97);}
+            to { opacity: 1; transform: scale(1);}
         }
 
         .zen-image {
             text-align: center;
-            transition: opacity 0.5s ease-in-out;
         }
 
         .zen-image img {
             max-width: 100%;
             border-radius: 2rem;
-            max-height: 280px;
+            max-height: 300px;
             width: auto;
             object-fit: cover;
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e2defa;
         }
 
         .message-container {
             margin-top: 1.8rem;
-            background: rgba(10, 15, 28, 0.7);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 1.5rem;
             padding: 1.5rem;
             font-size: 1.2rem;
-            line-height: 1.5;
+            line-height: 1.55;
             font-weight: 500;
-            color: #f2eefc;
-            border-left: 4px solid #a28eff;
-            min-height: 160px;
+            color: #1f2340;
+            border-left: 6px solid #9f8bef;
+            min-height: 170px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .typed-text {
@@ -183,190 +212,258 @@
             word-break: break-word;
         }
 
-        .cursor {
+        .message-cursor {
             display: inline-block;
             width: 3px;
-            margin-left: 4px;
-            background-color: #cbb9ff;
+            margin-left: 5px;
+            background-color: #6c5bcf;
             animation: blink 1s infinite;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Botón volver a la calma */
         .calm-btn {
-            background: rgba(30, 35, 55, 0.9);
-            border: 1px solid #7d6bc2;
-            color: #e5deff;
-            padding: 0.8rem 1.8rem;
+            background: rgba(240, 239, 250, 0.95);
+            border: 1px solid #cbc3f0;
+            color: #3f3a6b;
+            padding: 0.8rem 2rem;
             border-radius: 60px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.25s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            backdrop-filter: blur(4px);
             margin-top: 0.5rem;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .calm-btn:hover {
-            background: #4e3f94;
-            color: white;
-            border-color: #b7a4ff;
+            background: #e5e1ff;
+            border-color: #a897e6;
             transform: scale(1.02);
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .footer {
             margin-top: 2.5rem;
             text-align: center;
             font-size: 0.85rem;
-            color: #b7c1e6;
-            border-top: 1px solid rgba(110, 100, 150, 0.4);
+            color: #4a4e6e;
+            border-top: 1px solid rgba(150, 140, 190, 0.4);
             padding-top: 1.5rem;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
-        .footer-left {
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        .footer-right {
-            font-size: 0.8rem;
-            background: rgba(80, 70, 140, 0.4);
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-        }
-
-        /* Controles de música */
         .music-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            background: rgba(20, 25, 45, 0.85);
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(8px);
             border-radius: 60px;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.3rem;
             display: flex;
             align-items: center;
             gap: 12px;
-            border: 1px solid #8b74d4;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            font-size: 0.8rem;
-            color: white;
+            border: 1px solid #ccc6e8;
             cursor: pointer;
             transition: 0.2s;
-        }
-        .music-control:hover {
-            background: #3c2e78;
-            transform: scale(1.02);
-        }
-        .music-icon {
-            font-size: 1.3rem;
-        }
-        .music-status {
             font-weight: 500;
-            letter-spacing: 0.5px;
+            color: #2d2b4e;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .music-control:hover {
+            background: #ffffff;
+            border-color: #ae9ef0;
+            transform: scale(1.02);
         }
 
         @media (max-width: 680px) {
-            .main-content {
-                padding: 1.5rem;
-            }
-            .message-container {
-                font-size: 1rem;
-            }
-            .music-control {
-                bottom: 12px;
-                right: 12px;
-                padding: 0.3rem 0.8rem;
-            }
-        }
-
-        button {
-            background: none;
-            border: none;
-            font-family: inherit;
-        }
-        
-        /* Ocultar menu */
-        .hidden-menu {
-            display: none;
+            .main-content { padding: 1.2rem; }
+            .message-container { font-size: 1rem; }
+            .music-control { bottom: 15px; right: 15px; padding: 0.4rem 1rem; }
         }
     </style>
 </head>
 <body>
-<div class="app-container" id="appRoot">
+
+<div class="app-container">
     <div class="main-content">
-        <!-- Hero principal -->
         <div class="hero">
-            <h1>✨ Tu opinión importa en la lucha contra el ciberacoso ✨</h1>
-            <div class="hero-sub">
-                Un espacio diseñado para transformar el ruido digital en empatía. Elige un camino para reconectar con tu valor.
-            </div>
+            <h1 id="heroTitle"></h1>
+            <div id="heroSubtitle" class="hero-sub"></div>
         </div>
 
-        <!-- Menú interactivo (opciones) -->
         <div id="menuOptionsContainer" class="options-grid"></div>
 
-        <!-- Área de experiencia narrativa (inicialmente oculta) -->
         <div id="narrativeArea" class="narrative-area" style="display: none;">
-            <div class="zen-image" id="zenImage">
-                <img id="dynamicImage" src="" alt="imagen inspiradora">
+            <div class="zen-image">
+                <img id="dynamicImage" src="" alt="Imagen de sanación">
             </div>
-            <div class="message-container" id="messageContainer">
+            <div class="message-container">
                 <div id="typewriterText" class="typed-text"></div>
             </div>
         </div>
 
-        <!-- Botón Volver a la calma y footer -->
-        <div style="display: flex; justify-content: center; margin: 1rem 0 0.5rem;">
+        <div style="display: flex; justify-content: center; margin: 0.5rem 0 0.5rem;">
             <button id="backToCalmBtn" class="calm-btn">🌿 Volver a la calma 🌿</button>
         </div>
         <div class="footer">
-            <div class="footer-left">💜 Creado con propósito por: Nataly | UnidosEnLaRedSV</div>
-            <div class="footer-right">🕊️ respeto · empatía · cambio real</div>
+            <div>💜 Creado con propósito por: Nataly | UnidosEnLaRedSV</div>
+            <div>🕊️ respeto · empatía · cambio real</div>
         </div>
     </div>
 </div>
 
-<!-- Control de música flotante -->
 <div id="musicToggle" class="music-control">
-    <span class="music-icon">🎵</span>
-    <span class="music-status" id="musicStatusText">Música de fondo</span>
+    <span>🎵</span>
+    <span id="musicStatusText">Música relajante</span>
 </div>
 
 <script>
     // --------------------------------------------------------------
-    // MEJORAS IMPLEMENTADAS:
-    // 1. Fondo borroso con hojas/vegetación desenfocada (base) Y diferentes ambientes según opción.
-    // 2. Música relajante de fondo (loop suave) con control toggle.
-    // 3. Imágenes zen únicas para cada opción + fondos ambientales distintos.
-    // 4. Efecto máquina de escribir, transiciones suaves, menú transformador.
-    // 5. Mantiene todas las funciones anteriores y las mejora con inmersión sensorial.
+    // 1. REPRODUCCIÓN AUTOMÁTICA DE MÚSICA (YouTube API)
     // --------------------------------------------------------------
+    let player;
+    let isPlayerReady = false;
+    let musicActive = true;
 
-    // Definición de las opciones transformadas (cada una con su propio ambiente de fondo)
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtubeAudioPlayer', {
+            height: '0',
+            width: '0',
+            videoId: 'Tvb0iK5aP3Y',
+            playerVars: {
+                'autoplay': 1,
+                'loop': 1,
+                'controls': 0,
+                'disablekb': 1,
+                'fs': 0,
+                'modestbranding': 1,
+                'rel': 0,
+                'showinfo': 0,
+                'playlist': 'Tvb0iK5aP3Y'
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        isPlayerReady = true;
+        event.target.playVideo();
+        document.getElementById('musicStatusText').innerText = "🎵 Música activa";
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+            player.playVideo();
+        }
+        if (event.data == YT.PlayerState.PLAYING) {
+            musicActive = true;
+            document.getElementById('musicStatusText').innerText = "🎵 Música activa";
+        }
+        if (event.data == YT.PlayerState.PAUSED) {
+            musicActive = false;
+            document.getElementById('musicStatusText').innerText = "🔇 Silencio";
+        }
+    }
+
+    function toggleMusic() {
+        if (!isPlayerReady) return;
+        if (musicActive) {
+            player.pauseVideo();
+            musicActive = false;
+            document.getElementById('musicStatusText').innerText = "🔇 Silencio";
+        } else {
+            player.playVideo();
+            musicActive = true;
+            document.getElementById('musicStatusText').innerText = "🎵 Música activa";
+        }
+    }
+
+    const ytContainer = document.createElement('div');
+    ytContainer.id = 'youtubeAudioPlayer';
+    ytContainer.style.position = 'absolute';
+    ytContainer.style.width = '0';
+    ytContainer.style.height = '0';
+    ytContainer.style.opacity = '0';
+    ytContainer.style.pointerEvents = 'none';
+    document.body.appendChild(ytContainer);
+
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    const musicBtn = document.getElementById('musicToggle');
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMusic();
+    });
+
+    // --------------------------------------------------------------
+    // 2. SONIDO DE TECLADO SUAVE (TENUE) PARA EL EFECTO DE ESCRITURA
+    // --------------------------------------------------------------
+    let audioCtx = null;
+    let keystrokeGain = null;
+    
+    // Inicializar audio context solo cuando se necesite (para cumplir políticas de navegador)
+    function initKeystrokeAudio() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        keystrokeGain = audioCtx.createGain();
+        keystrokeGain.gain.value = 0.12; // Volumen muy suave y tenue
+        keystrokeGain.connect(audioCtx.destination);
+    }
+    
+    function playSoftKeystroke() {
+        if (!audioCtx) {
+            initKeystrokeAudio();
+        }
+        // Si el contexto está suspendido, lo reanudamos (por la política de autoplay)
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume().then(() => {
+                actuallyPlayKeystroke();
+            }).catch(e => console.log);
+        } else {
+            actuallyPlayKeystroke();
+        }
+    }
+    
+    function actuallyPlayKeystroke() {
+        if (!audioCtx || !keystrokeGain) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = 880; // Nota agradable y suave (tipo "tic")
+        gainNode.gain.value = 0.08;
+        osc.connect(gainNode);
+        gainNode.connect(keystrokeGain);
+        osc.start();
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+        osc.stop(now + 0.12);
+    }
+
+    // --------------------------------------------------------------
+    // 3. DEFINICIÓN DE OPCIONES
+    // --------------------------------------------------------------
     const optionsData = [
         {
             id: "herir",
             title: "Cuando mis palabras hieren",
-            purpose: "Dirigido a quien reconoce que ha sido agresivo y busca entender el daño que causa.",
+            purpose: "Dirigido a quien reconoce que ha sido agresivo y busca entender el daño.",
             emoji: "⚡💔",
-            message: "Reconocer que tus acciones han lastimado a alguien no es un signo de debilidad, es el primer paso de tu grandeza. Detrás de cada pantalla hay un corazón latiendo; elige ser la persona que siembra paz donde otros siembran espinas. El perdón empieza en la consciencia, hoy comienza tu transformación.",
-            image: "https://images.pexels.com/photos/793412/pexels-photo-793412.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-            backgroundImage: "https://images.pexels.com/photos/1631677/leaf-nature-plant-green-1631677.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop"  // hojas verdes desenfoque natural
+            message: "Reconocer que tus acciones han lastimado a alguien no es un signo de debilidad, es el primer paso de tu grandeza. Detrás de cada pantalla hay un corazón latiendo; elige ser la persona que siembra paz donde otros siembran espinas. El perdón empieza en la conciencia, hoy comienza tu transformación.",
+            image: "https://images.pexels.com/photos/6646872/pexels-photo-6646872.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
         },
         {
             id: "dolor",
@@ -374,17 +471,15 @@
             purpose: "Un refugio para quien está sufriendo ciberacoso en este momento.",
             emoji: "🌀🕯️",
             message: "Tu valor es intrínseco e inalterable. Ningún comentario tiene el poder de borrar quién eres en realidad. Esta tormenta es solo temporal, pero tu fortaleza es permanente. Respira, apaga la pantalla y recuerda: eres amado/a. Eres más que un like, eres luz infinita.",
-            image: "https://images.pexels.com/photos/1408221/light-dawn-nature-water-1408221.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-            backgroundImage: "https://images.pexels.com/photos/998736/pexels-photo-998736.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // agua y hojas flotantes
+            image: "https://images.pexels.com/photos/568021/pexels-photo-568021.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
         },
         {
             id: "valor",
             title: "Redefiniendo mi valor",
-            purpose: "Para quien ha dejado que una opinión externa distorsione la percepción de sí mismo.",
+            purpose: "Para quien ha dejado que una opinión externa distorsione su percepción.",
             emoji: "🌟🌱",
             message: "No permitas que la opinión distorsionada de otros se convierta en tu realidad. Los comentarios ajenos dicen mucho más de quien los escribe que de quien los recibe. Vuelve a tu esencia, a lo que amas de ti, porque eso es lo único que es real. Tu brillo no necesita validación externa.",
-            image: "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-            backgroundImage: "https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // luz entre hojas
+            image: "https://images.pexels.com/photos/935743/pexels-photo-935743.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
         },
         {
             id: "fuerza",
@@ -392,17 +487,15 @@
             purpose: "Enfocado en la importancia de buscar ayuda y romper el silencio.",
             emoji: "🤝🌊",
             message: "A veces duele más el silencio de los demás que el grito del agresor. Pero hoy, quiero que sepas que no estás solo/a. Levantarte y hablar de lo que sientes es el acto de valentía más grande que puedes realizar. Pedir ayuda es poder, compartir tu herida es empezar a sanar.",
-            image: "https://images.pexels.com/photos/572679/pexels-photo-572679.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-            backgroundImage: "https://images.pexels.com/photos/1486974/forest-trees-fog-nature-1486974.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // bosque brumoso
+            image: "https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
         },
         {
             id: "sueño",
             title: "Soñando un internet más humano",
-            purpose: "Para quien desea ser parte del cambio y construir comunidades basadas en el respeto.",
+            purpose: "Para quien desea ser parte del cambio y construir comunidades respetuosas.",
             emoji: "🌍💭",
             message: "El cambio real comienza con tu decisión de no responder al odio con odio. Cada palabra amable que compartes es una pieza clave en la construcción de un espacio digital donde todos podamos ser nosotros mismos sin miedo. Juntos soñamos un internet más humano, empático y valiente.",
-            image: "https://images.pexels.com/photos/1267325/pexels-photo-1267325.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-            backgroundImage: "https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" // atardecer y hojas suaves
+            image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
         }
     ];
 
@@ -412,260 +505,162 @@
     const dynamicImg = document.getElementById('dynamicImage');
     const typewriterDiv = document.getElementById('typewriterText');
     const backBtn = document.getElementById('backToCalmBtn');
-    const bodyEl = document.body;
-    
-    // Estados de música (audio web)
-    let audioCtx = null;
-    let isMusicPlaying = false;
-    let musicSource = null;
-    let gainNode = null;
-    let musicBuffer = null;
-    const musicToggleBtn = document.getElementById('musicToggle');
-    const musicStatusSpan = document.getElementById('musicStatusText');
-    
-    // Crear un Oscilador suave y pad ambiental no intrusivo (onda sinusoidal + ruido rosado? mejor un simple loop de naturaleza sampleada pero usamos Web Audio para sonido relajante)
-    // Generamos un paisaje sonoro suave: una combinación de onda sinodal profunda + ruido suave tipo "lluvia/olas" pero armónico.
-    // Para no depender de archivos externos, creamos un sonido ambiente etéreo (música relajante de fondo tipo meditación)
-    async function initAmbientMusic() {
-        if (audioCtx) return;
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        gainNode = audioCtx.createGain();
-        gainNode.gain.value = 0.22;  // volumen bajo y relajante
-        gainNode.connect(audioCtx.destination);
-        
-        // Creamos un loop simple con osciladores suaves y un ruido de fondo tipo "hojas"
-        // Esto simulará una música de fondo ambiental, suave, no intrusiva.
-        // Usamos un oscilador principal de frecuencia baja (onda seno) + un segundo armónico.
-        const now = audioCtx.currentTime;
-        
-        // Función para crear un oscilador con fade suave
-        function createPad(freq, detune, panVal) {
-            const osc = audioCtx.createOscillator();
-            const gainOsc = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.value = freq;
-            osc.detune.value = detune || 0;
-            gainOsc.gain.value = 0.08;
-            osc.connect(gainOsc);
-            gainOsc.connect(gainNode);
-            osc.start();
-            // fade out lento y loop infinito? mejor reiniciar con evento ended, pero para loop haremos otro método.
-            return {osc, gainOsc};
-        }
-        
-        // Creamos un loop infinito con dos osciladores que se reciclen? En realidad los osciladores solo pueden iniciar una vez.
-        // Para música continua usaremos un buffer de ruido + generator? Alternativa: crear un nodo de BufferSource con un sample relajante generado.
-        // Generamos un "ruido marrón" suave que evoca hojas y viento.
-        const bufferSize = audioCtx.sampleRate * 4; // 4 segundos de ruido ambiental
-        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-            // Brown noise más cálido
-            data[i] = (Math.random() * 2 - 1) * 0.08;
-        }
-        const noiseSource = audioCtx.createBufferSource();
-        noiseSource.buffer = noiseBuffer;
-        noiseSource.loop = true;
-        const noiseGain = audioCtx.createGain();
-        noiseGain.gain.value = 0.1;
-        noiseSource.connect(noiseGain);
-        noiseGain.connect(gainNode);
-        
-        // Agregamos un tono bajo de meditación
-        const droneOsc = audioCtx.createOscillator();
-        droneOsc.type = 'sine';
-        droneOsc.frequency.value = 88; // nota baja
-        const droneGain = audioCtx.createGain();
-        droneGain.gain.value = 0.07;
-        droneOsc.connect(droneGain);
-        droneGain.connect(gainNode);
-        
-        // segundo drone más alto
-        const droneOsc2 = audioCtx.createOscillator();
-        droneOsc2.type = 'sine';
-        droneOsc2.frequency.value = 132;
-        const droneGain2 = audioCtx.createGain();
-        droneGain2.gain.value = 0.05;
-        droneOsc2.connect(droneGain2);
-        droneGain2.connect(gainNode);
-        
-        droneOsc.start();
-        droneOsc2.start();
-        noiseSource.start();
-        
-        // Guardamos referencias para poder detener
-        musicSource = { noiseSource, droneOsc, droneOsc2, noiseGain, droneGain, droneGain2 };
-    }
-    
-    function startMusic() {
-        if (!audioCtx) {
-            initAmbientMusic().then(() => {
-                if (audioCtx && !isMusicPlaying) {
-                    audioCtx.resume();
-                    isMusicPlaying = true;
-                    musicStatusSpan.innerText = "🎶 Música activa";
-                    if (gainNode) gainNode.gain.setTargetAtTime(0.22, audioCtx.currentTime, 0.1);
-                }
-            }).catch(e => console.log("audio error", e));
-        } else {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            isMusicPlaying = true;
-            musicStatusSpan.innerText = "🎶 Música activa";
-            if (gainNode) gainNode.gain.setTargetAtTime(0.22, audioCtx.currentTime, 0.1);
-        }
-    }
-    
-    function stopMusic() {
-        if (audioCtx && gainNode) {
-            gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
-            isMusicPlaying = false;
-            musicStatusSpan.innerText = "🔇 Música apagada";
-        } else {
-            isMusicPlaying = false;
-            musicStatusSpan.innerText = "🔇 Música apagada";
-        }
-    }
-    
-    function toggleMusic() {
-        if (isMusicPlaying) {
-            stopMusic();
-        } else {
-            startMusic();
-        }
-    }
-    
-    musicToggleBtn.addEventListener('click', () => {
-        toggleMusic();
-    });
-    
-    // Auto iniciar música solo después de interacción del usuario? (política de navegadores)
-    // Para mejor experiencia, empezamos en silencio hasta que el usuario haga click en el botón de música o en cualquier opción.
-    // Pero si el usuario quiere música, lo activa manualmente. También podemos activar música al primer clic en menu opción.
-    let musicInitByUser = false;
-    function tryAutoInitMusic() {
-        if (!musicInitByUser && audioCtx === null) {
-            initAmbientMusic().then(() => {
-                // No la iniciamos automáticamente, solo preparamos. El usuario debe dar permisos.
-                musicInitByUser = true;
-            }).catch(e=>console.log);
-        }
-    }
-    
-    // Cambiar fondo ambiental según la opción seleccionada (diferentes imágenes de hojas/vegetación desenfocada)
-    function setAmbientBackground(imageUrl) {
-        if (imageUrl && imageUrl.trim() !== "") {
-            bodyEl.style.backgroundImage = `url('${imageUrl}')`;
-            bodyEl.style.transition = 'background-image 0.6s ease-in-out';
-        }
-    }
-    
-    // Reset fondo al principal suave (hojas base)
-    function resetToDefaultBackground() {
-        bodyEl.style.backgroundImage = "url('https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop')";
-    }
-    
-    // Funciones de typewriter, fade, etc
-    let currentTypingInterval = null;
-    function stopTypewriter() {
-        if (currentTypingInterval) {
-            clearInterval(currentTypingInterval);
-            currentTypingInterval = null;
-        }
-    }
-    
-    function startTypewriterEffect(fullMessage) {
-        stopTypewriter();
-        if (!typewriterDiv) return;
-        typewriterDiv.innerHTML = '';
+    const heroTitleEl = document.getElementById('heroTitle');
+    const heroSubtitleEl = document.getElementById('heroSubtitle');
+
+    // --------------------------------------------------------------
+    // 4. EFECTO DE ESCRITURA PARA TÍTULO (SOLO PRIMERA VEZ)
+    // --------------------------------------------------------------
+    let heroAnimationDone = false;
+
+    function typeWriterHero(element, text, speed = 45, callback) {
         let i = 0;
-        const length = fullMessage.length;
-        function typeLetter() {
-            if (i < length) {
-                typewriterDiv.textContent += fullMessage.charAt(i);
+        element.innerHTML = '';
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
                 i++;
-                currentTypingInterval = setTimeout(typeLetter, 35);
+                setTimeout(type, speed);
             } else {
                 const cursorSpan = document.createElement('span');
-                cursorSpan.className = 'cursor';
+                cursorSpan.className = 'hero-cursor';
                 cursorSpan.textContent = '|';
-                typewriterDiv.appendChild(cursorSpan);
-                currentTypingInterval = null;
+                element.appendChild(cursorSpan);
+                if (callback) callback();
             }
         }
-        typeLetter();
+        type();
     }
-    
-    function setZenImageWithFade(newSrc) {
-        if (!dynamicImg) return;
-        dynamicImg.style.transition = 'opacity 0.3s ease';
-        dynamicImg.style.opacity = '0';
+
+    function animateHero() {
+        if (heroAnimationDone) return;
+        heroAnimationDone = true;
+        const fullTitle = "✨ Tu opinión importa en la lucha contra el ciberacoso ✨";
+        const fullSub = "Un espacio diseñado para transformar el ruido digital en empatía. Elige un camino para reconectar con tu valor.";
+        typeWriterHero(heroTitleEl, fullTitle, 45, () => {
+            typeWriterHero(heroSubtitleEl, fullSub, 38);
+        });
+    }
+
+    // --------------------------------------------------------------
+    // 5. FUNCIONES PARA EL MENÚ Y NARRATIVA (CON SONIDO DE TECLADO)
+    // --------------------------------------------------------------
+    let typeTimeout = null;
+    let currentSoundInterval = null;
+
+    function stopTypewriter() {
+        if (typeTimeout) {
+            clearTimeout(typeTimeout);
+            typeTimeout = null;
+        }
+        if (currentSoundInterval) {
+            clearInterval(currentSoundInterval);
+            currentSoundInterval = null;
+        }
+    }
+
+    // Función que escribe y reproduce sonido suave con cada carácter
+    function startTypewriterWithSound(element, text, speed = 42) {
+        stopTypewriter();
+        element.innerHTML = '';
+        let index = 0;
+        
+        function writeLetter() {
+            if (index < text.length) {
+                // Agregar letra
+                element.textContent += text.charAt(index);
+                // Reproducir sonido de teclado suave
+                playSoftKeystroke();
+                index++;
+                typeTimeout = setTimeout(writeLetter, speed);
+            } else {
+                // Terminar: agregar cursor parpadeante
+                const cursorSpan = document.createElement('span');
+                cursorSpan.className = 'message-cursor';
+                cursorSpan.textContent = '|';
+                element.appendChild(cursorSpan);
+                typeTimeout = null;
+            }
+        }
+        writeLetter();
+    }
+
+    function setImageFade(imgElement, newSrc) {
+        if (!imgElement) return;
+        imgElement.style.transition = 'opacity 0.35s';
+        imgElement.style.opacity = '0';
         setTimeout(() => {
-            dynamicImg.src = newSrc;
-            dynamicImg.onload = () => dynamicImg.style.opacity = '1';
-            if (dynamicImg.complete) dynamicImg.style.opacity = '1';
+            imgElement.src = newSrc;
+            imgElement.onload = () => imgElement.style.opacity = '1';
+            if (imgElement.complete) imgElement.style.opacity = '1';
         }, 150);
     }
-    
-    function resetToMenu() {
-        if (menuContainer.style.display !== 'none') return;
-        menuContainer.style.display = 'grid';
-        narrativeArea.style.display = 'none';
-        stopTypewriter();
-        typewriterDiv.innerHTML = '';
-        resetToDefaultBackground();
-    }
-    
-    function showNarrativeForOption(option) {
-        stopTypewriter();
-        if (menuContainer.style.display !== 'none') menuContainer.style.display = 'none';
-        narrativeArea.style.display = 'block';
-        setZenImageWithFade(option.image);
-        startTypewriterEffect(option.message);
-        // Cambiar el fondo ambiental según la opción (hojas distintas, ambientes únicos)
-        if (option.backgroundImage) {
-            setAmbientBackground(option.backgroundImage);
-        } else {
-            resetToDefaultBackground();
-        }
-        // Si la música no se ha iniciado por el usuario, pero podemos sugerir el botón; no forzamos autoplay por políticas del navegador.
-        if (!musicInitByUser) {
-            // solo preparamos sin sonido molesto
-            tryAutoInitMusic();
-        }
-    }
-    
-    function buildMenu() {
+
+    function rebuildMenuWithAnimation() {
         menuContainer.innerHTML = '';
-        optionsData.forEach(opt => {
+        optionsData.forEach((opt, idx) => {
             const card = document.createElement('div');
             card.className = 'option-card';
+            card.style.animation = 'none';
+            card.offsetHeight;
+            card.style.animation = `cardFadeInUp 0.5s forwards ${idx * 0.05 + 0.05}s`;
             card.innerHTML = `
                 <span class="option-emoji">${opt.emoji}</span>
                 <div class="option-title">${opt.title}</div>
                 <div class="option-purpose">${opt.purpose}</div>
             `;
-            card.addEventListener('click', () => showNarrativeForOption(opt));
+            card.addEventListener('click', () => showNarrative(opt));
             menuContainer.appendChild(card);
         });
     }
-    
-    backBtn.addEventListener('click', () => {
-        resetToMenu();
-    });
-    
-    function init() {
-        buildMenu();
+
+    function resetToMenu() {
+        if (menuContainer.style.display !== 'none') return;
         narrativeArea.style.display = 'none';
         menuContainer.style.display = 'grid';
-        resetToDefaultBackground();
-        dynamicImg.src = "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop";
+        stopTypewriter();
         typewriterDiv.innerHTML = '';
-        // Precargar imagenes de fondo y opciones
+        rebuildMenuWithAnimation();
+    }
+
+    function showNarrative(option) {
+        stopTypewriter();
+        if (menuContainer.style.display !== 'none') {
+            menuContainer.style.display = 'none';
+        }
+        narrativeArea.style.display = 'block';
+        setImageFade(dynamicImg, option.image);
+        // Iniciar escritura con sonido de teclado suave
+        startTypewriterWithSound(typewriterDiv, option.message, 40);
+        narrativeArea.style.animation = 'none';
+        narrativeArea.offsetHeight;
+        narrativeArea.style.animation = 'fadeScale 0.4s ease';
+    }
+
+    // --------------------------------------------------------------
+    // 6. INICIALIZACIÓN
+    // --------------------------------------------------------------
+    function preloadImages() {
         optionsData.forEach(opt => {
-            if (opt.image) new Image().src = opt.image;
-            if (opt.backgroundImage) new Image().src = opt.backgroundImage;
+            const img = new Image();
+            img.src = opt.image;
         });
     }
+
+    function init() {
+        rebuildMenuWithAnimation();
+        narrativeArea.style.display = 'none';
+        menuContainer.style.display = 'grid';
+        typewriterDiv.innerHTML = '';
+        dynamicImg.src = "https://images.pexels.com/photos/6646872/pexels-photo-6646872.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop";
+        preloadImages();
+        animateHero();
+        
+        // Preinicializar el audio de teclado (sin sonido aún, solo prepara el contexto)
+        initKeystrokeAudio();
+    }
+
+    backBtn.addEventListener('click', resetToMenu);
     
     init();
 </script>
