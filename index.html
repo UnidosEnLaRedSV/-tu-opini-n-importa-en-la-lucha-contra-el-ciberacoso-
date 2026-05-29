@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenidad Digital | Lucha contra el Ciberacoso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #6366f1; --bg: #f8fafc; --text: #1e293b; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        /* Hero Section */
+        header { height: 80vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80'); background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; }
+        
+        /* Container */
+        .container { max-width: 900px; margin: -100px auto 50px; background: white; padding: 4rem; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        /* Interactive Buttons Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 3rem; }
+        .btn-card { border: 1px solid #e2e8f0; padding: 2rem; border-radius: 20px; cursor: pointer; transition: 0.4s; background: #fff; text-align: center; }
+        .btn-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15); }
+        
+        /* Result Area */
+        #display { margin-top: 4rem; padding: 3rem; background: #f1f5f9; border-radius: 20px; font-style: italic; font-size: 1.4rem; opacity: 0; transition: opacity 0.5s; }
+        .visible { opacity: 1 !important; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>Tu opinión importa</h1>
+        <p>Construyendo juntos un espacio de respeto y empatía digital.</p>
+    </div>
+</header>
+
+<div class="container">
+    <h2 style="text-align: center; font-family: 'Playfair Display';">¿Cómo te sientes hoy?</h2>
+    
+    <div class="grid">
+        <div class="btn-card" onclick="show('El cambio empieza con una sola palabra amable. Tu empatía es la herramienta más poderosa para transformar el entorno.')">
+            <h3>Reflexión</h3>
+            <p>Para quien necesita un poco de luz hoy.</p>
+        </div>
+        <div class="btn-card" onclick="show('Tu valor no depende de los comentarios de otros. Eres una persona increíble y única, no lo olvides.')">
+            <h3>Apoyo</h3>
+            <p>Palabras de aliento para ti.</p>
+        </div>
+        <div class="btn-card" onclick="show('El silencio a veces es la respuesta más digna ante el odio. Protege tu paz mental.')">
+            <h3>Defensa</h3>
+            <p>Cómo protegerte en el mundo digital.</p>
+        </div>
+        <div class="btn-card" onclick="show('Estamos creando redes seguras. Tu participación es clave para un internet más humano.')">
+            <h3>Comunidad</h3>
+            <p>Unidos por un fin común.</p>
+        </div>
+    </div>
+
+    <div id="display">Selecciona una opción para leer un mensaje de paz.</div>
+</div>
+
+<script>
+    function show(msg) {
+        const d = document.getElementById('display');
+        d.innerText = msg;
+        d.classList.add('visible');
+    }
+</script>
+
+</body>
+</html>
